@@ -1,0 +1,49 @@
+@import 'vars';
+// @import 'root';
+@import 'mixins';
+@import 'fonts';
+@import 'footer';
+@import 'form';
+@import 'header';
+@import 'home';
+@import 'instagram';
+@import 'map';
+
+// Media Query: 768, 375
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+body {
+  @include default-font-styles;
+}
+
+h1 {
+  @include text-h1;
+}
+
+h2 {
+  @include text-h2;
+}
+
+.text {
+  @include text-body;
+}
+
+.caption {
+  @include text-caption;
+}
+
+@media screen and (max-width: 375px) {
+  h1 {
+    @include text-h1-mobile;
+  }
+
+  h2 {
+    @include text-h2-mobile;
+  }
+}

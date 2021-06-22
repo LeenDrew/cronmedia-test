@@ -1,0 +1,47 @@
+@mixin default-font-styles {
+  font-family: $font-family-sans-serif;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}
+
+@mixin text-h1 {
+  font-size: 72px;
+  line-height: 66px;
+  @include default-font-styles;
+}
+
+@mixin text-h2 {
+  font-size: 32px;
+  line-height: 41px;
+  @include default-font-styles;
+}
+
+@mixin text-h3 {
+  font-size: 24px;
+  line-height: 30px;
+  @include default-font-styles;
+}
+
+@mixin text-h1-mobile {
+  font-size: 48px;
+  line-height: 44px;
+  @include default-font-styles;
+}
+
+@mixin text-h2-mobile {
+  font-size: 24px;
+  line-height: 30px;
+  @include default-font-styles;
+}
+
+@mixin text-caption {
+  font-size: 14px;
+  line-height: 18px;
+  @include default-font-styles;
+}
+
+@mixin text-body {
+  font-size: 18px;
+  line-height: 23px;
+  @include default-font-styles;
+}
