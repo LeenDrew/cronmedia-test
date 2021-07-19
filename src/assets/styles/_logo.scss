@@ -1,11 +1,18 @@
 .logo {
   display: flex;
 
+  &__img {
+    width: 21px;
+    height: 31px;
+  }
+
   &__title {
     margin-left: 16px;
 
     @media (max-width: 375px) {
-      margin-left: 12px;
+      & {
+        margin-left: 12px;
+      }
     }
   }
 }
