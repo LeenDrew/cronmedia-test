@@ -1,7 +1,17 @@
 @font-face {
-  font-family: 'Euclid Circular B';
-  src: url('../fonts/EuclidCircularB-Regular.woff') format('woff');
+  font-family: 'Euclid Circular B Regular';
+  src: url('../fonts/EuclidCircularB-Regular.woff') format('woff'),
+    url('../fonts/EuclidCircularB-Regular.woff2') format('woff2');
   font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Euclid Circular B Medium';
+  src: url('../fonts/EuclidCircularB-Medium.woff') format('woff'),
+    url('../fonts/EuclidCircularB-Medium.woff2') format('woff2');
+  font-weight: 600;
   font-style: normal;
   font-stretch: normal;
 }

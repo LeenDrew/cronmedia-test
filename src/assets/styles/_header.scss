@@ -1,0 +1,27 @@
+.header {
+  width: 100%;
+
+  &__wrapper {
+    background-color: $white;
+
+    &.form-page {
+      background-color: $gray;
+    }
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 115px;
+
+    @media (max-width: 375px) {
+      min-height: 78px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+}

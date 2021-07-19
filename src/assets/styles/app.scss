@@ -1,15 +1,19 @@
 @import 'vars';
-// @import 'root';
 @import 'mixins';
 @import 'fonts';
+@import 'icons';
+@import 'popup';
 @import 'footer';
+@import 'request';
 @import 'form';
+@import 'logo';
 @import 'header';
+@import 'headerActions';
 @import 'home';
 @import 'instagram';
 @import 'map';
 
-// Media Query: 768, 375
+// Media Query: *992*, 768, *576*, 375 - 320
 
 * {
   margin: 0;
@@ -18,32 +22,84 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
 body {
-  @include default-font-styles;
+  @include font-styles-default;
+
+  &.scrolled {
+    overflow: hidden;
+  }
 }
 
-h1 {
+.h1 {
   @include text-h1;
+
+  @media (max-width: 375px) {
+    & {
+      @include text-h1-mobile;
+    }
+  }
 }
 
-h2 {
+.h2 {
   @include text-h2;
+
+  @media (max-width: 375px) {
+    & {
+      @include text-h2-mobile;
+    }
+  }
+}
+
+.h3 {
+  @include text-h3;
 }
 
 .text {
-  @include text-body;
+  @include text-main;
+
+  &--caption {
+    @include text-caption;
+  }
+
+  &--popup {
+    @include text-popup;
+  }
 }
 
-.caption {
-  @include text-caption;
+.text-center {
+  text-align: center;
 }
 
-@media screen and (max-width: 375px) {
-  h1 {
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.page {
+  &__content {
+    margin-bottom: 70px;
+  }
+}
+
+@media (max-width: 375px) {
+  .h1 {
     @include text-h1-mobile;
   }
 
-  h2 {
+  .h2 {
     @include text-h2-mobile;
   }
 }

@@ -6,6 +6,13 @@ $red: #ff6666 !default;
 $yellow: #ffdf31 !default;
 $light-green: #10c300 !default;
 
-$font-family-sans-serif: 'Euclid Circular B Regular', sans-serif !default;
+$font-family-regular: 'Euclid Circular B Regular', sans-serif;
+$font-family-medium: 'Euclid Circular B Medium', sans-serif !default;
 $font-style: normal !default;
-$font-weight: 500 !default;
+$font-weight-regular: 400;
+$font-weight-medium: 500 !default;
+
+$border-radius-default: 8px !default;
+
+$transition-duration-default: 0.3s !default;
+$transition-function-default: ease-in-out !default;
