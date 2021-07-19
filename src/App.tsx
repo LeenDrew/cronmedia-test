@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Main';
 import Request from './pages/Request';
@@ -8,7 +8,7 @@ import './assets/styles/app.scss';
 
 export default function App(): React.ReactElement {
   return (
-    <BrowserRouter>
+    <HashRouter basename="/">
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
@@ -16,6 +16,6 @@ export default function App(): React.ReactElement {
         <Redirect to="/" />
       </Switch>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
