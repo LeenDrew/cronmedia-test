@@ -77,7 +77,7 @@ const schema = yup.object().shape({
   agreement: yup.bool().notOneOf([false], 'поле обязательно для заполнения'),
 });
 
-type formDate = {
+type FormData = {
   vacancy: string;
   name: string;
   birthday: string;
@@ -90,7 +90,11 @@ type formDate = {
   agreement: boolean;
 };
 
-export default function Form(): React.ReactElement {
+type FormProps = {
+  isFormSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Form({ isFormSubmitted }: FormProps): React.ReactElement {
   const {
     register,
     handleSubmit,
@@ -103,9 +107,16 @@ export default function Form(): React.ReactElement {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: formDate) => {
-    data.phone.replace(/[- )(_)]/g, '');
-    // POST data
+  const normalizeData = (data: FormData) => ({
+    ...data,
+    phone: data.phone.replace(/[- )(_)]/g, ''),
+  });
+
+  const onSubmit = (data: FormData) => {
+    // eslint-disable-next-line no-console
+    console.log(normalizeData(data));
+    // POST normalizeData(data)
+    isFormSubmitted(true);
   };
 
   const recaptchaRef = createRef<ReCAPTCHA>();

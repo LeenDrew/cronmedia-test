@@ -1,19 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState, useCallback } from 'react';
 
-type image = {
-  id: string;
-  author: string;
-  width: number;
-  height: number;
+type Image = {
+  albumId: number;
+  id: number;
+  title: string;
   url: string;
-  // eslint-disable-next-line camelcase
-  download_url: string;
+  thumbnailUrl: string;
 };
 
 export default function Instagram(): React.ReactElement {
-  const [imageList, setImageList] = useState<image[]>([]);
+  const [imageList, setImageList] = useState<Image[]>([]);
   const [numberToShow, setNumberToShow] = useState<number>(4);
+  const [startNumber, setStartNumber] = useState<number>(0);
   const query = window.matchMedia('(max-width: 1000px)');
 
   const queryHandler = useCallback(() => {
@@ -29,26 +28,24 @@ export default function Instagram(): React.ReactElement {
     return () => query.removeEventListener('change', queryHandler);
   }, [queryHandler, query]);
 
-  const fetchImages: (limit: number) => void = async (limit) => {
+  const fetchImages: (limit?: number) => void = async (limit = 5) => {
     try {
-      const responce = await axios.get('https://picsum.photos/v2/list', {
+      const responce = await axios.get('https://jsonplaceholder.typicode.com/photos', {
         params: {
-          page: 1,
-          limit,
+          _start: startNumber,
+          _limit: limit,
         },
       });
-      setImageList([...imageList, ...(responce.data as image[])]);
+      setImageList([...imageList, ...(responce.data as Image[])]);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      setStartNumber(responce.data[responce.data.length - 1].id);
     } catch (e) {
       throw new Error(e);
     }
   };
 
-  const buttonClickHandler = () => {
-    fetchImages(numberToShow);
-  };
-
   useEffect(() => {
-    fetchImages(5);
+    fetchImages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -59,11 +56,15 @@ export default function Instagram(): React.ReactElement {
         <div className="instagram__grid grid">
           {imageList.map((item) => (
             <article key={item.id} className="grid__item">
-              <img src={item.download_url} alt={item.author} />
+              <img src={item.url} alt={item.title} />
             </article>
           ))}
         </div>
-        <button className="instagram__button text" type="button" onClick={buttonClickHandler}>
+        <button
+          className="instagram__button text"
+          type="button"
+          onClick={() => fetchImages(numberToShow)}
+        >
           показать ещё
         </button>
       </div>

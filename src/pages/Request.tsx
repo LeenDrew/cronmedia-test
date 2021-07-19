@@ -29,7 +29,7 @@ export default function Request(): React.ReactElement {
                 </p>
               </div>
             )}
-            {!isFormSubmitted && <Form />}
+            {!isFormSubmitted && <Form isFormSubmitted={setIsFormSubmitted} />}
             <div className="content__item info">
               <span className="info__title h2">
                 {!isFormSubmitted && 'Наша суперцель'}
