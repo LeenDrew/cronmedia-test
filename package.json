@@ -2,7 +2,6 @@
   "name": "cronmedia-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://leendrew.github.io/cronmedia-test/",
   "dependencies": {
     "@hookform/resolvers": "^2.6.1",
     "@testing-library/jest-dom": "^5.11.4",
