@@ -34,6 +34,7 @@ export default function Map(): React.ReactElement {
   const [markers, setMarkers] = useState<MarkerType[]>(DATA);
   const [currentFilterType, setCurrentFilterType] = useState<string>('');
 
+  // Временное решение без сервера
   const typeFilter = (type: string) => {
     if (type === currentFilterType) {
       return;

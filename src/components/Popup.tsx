@@ -44,7 +44,7 @@ export default function Popup({ closeHandler }: PopupProps): React.ReactElement 
   }, [popupContentHandler]);
 
   return (
-    <div className="popup" onScroll={(e) => scrollHandler(e)}>
+    <div className="popup" onScroll={scrollHandler}>
       <div className="popup__container">
         <div className="popup__content content" ref={popupContentRef}>
           <div

@@ -8,6 +8,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+// Временное решение без сервера
 const DATA = [
   { title: 'водитель', value: 'driver' },
   { title: 'кассир', value: 'cashier' },
@@ -125,8 +126,18 @@ export default function Form({ isFormSubmitted }: FormProps): React.ReactElement
       recaptchaRef.current.execute();
     }
   };
+  const recaptchaOnChangeHandler = (token: string | null) => {
+    if (token !== null) {
+      setValue('recaptcha', token, { shouldValidate: true, shouldDirty: true });
+    } else {
+      setValue('recaptcha', '', { shouldValidate: true, shouldDirty: true });
+    }
+  };
 
   const [isFormInputOnFocus, setIsFormInputOnFocus] = useState<boolean>(false);
+  const inputFocusHandler = () => setIsFormInputOnFocus(true);
+  const inputBlurHandler = () => setIsFormInputOnFocus(false);
+
   const [drag, setDrag] = useState<boolean>(false);
   const dragStartHandler = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
@@ -315,8 +326,8 @@ export default function Form({ isFormSubmitted }: FormProps): React.ReactElement
             className="item__input file__input"
             type="file"
             {...register('resumeFile')}
-            onFocus={() => setIsFormInputOnFocus(true)}
-            onBlur={() => setIsFormInputOnFocus(false)}
+            onFocus={inputFocusHandler}
+            onBlur={inputBlurHandler}
             onChange={fileInputHandler}
           />
           <div
@@ -357,13 +368,7 @@ export default function Form({ isFormSubmitted }: FormProps): React.ReactElement
               ref={recaptchaRef}
               sitekey={RECAPTCHA_TEST_KEY}
               size="invisible"
-              onChange={(token) => {
-                if (token !== null) {
-                  setValue('recaptcha', token, { shouldValidate: true, shouldDirty: true });
-                } else {
-                  setValue('recaptcha', '', { shouldValidate: true, shouldDirty: true });
-                }
-              }}
+              onChange={recaptchaOnChangeHandler}
             />
           </div>
           <Controller
