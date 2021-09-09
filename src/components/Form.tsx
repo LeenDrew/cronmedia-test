@@ -399,10 +399,8 @@ export default function Form({ isFormSubmitted }: FormProps): React.ReactElement
             />
           </svg>
           <span className="recaptcha__title text--caption">я не робот</span>
-          <span className="recaptcha__icon _icon-google-recaptcha">
-            <span className="path1" />
-            <span className="path2" />
-            <span className="path3" />
+          <span className="recaptcha__icon-container ">
+            <div className="recaptcha__icon" />
           </span>
         </label>
         {errors.recaptcha && (
